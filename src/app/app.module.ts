@@ -7,6 +7,9 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
 import { UserFormComponent } from './user/components/user-form/user-form.component';
+import { HomeComponent } from './modules/home/home.component';
+import { PrimaryButtonComponent } from './shared/components/primary-button/primary-button.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,13 @@ import { UserFormComponent } from './user/components/user-form/user-form.compone
     NavbarComponent,
     FooterComponent,
     UserListComponent,
-    UserFormComponent
+    UserFormComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
