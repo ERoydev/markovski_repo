@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  githubClickHandler() {
+    window.open('https://github.com/ERoydev/', '_blank');
+  }
+
+  linkedInClickHandler() {
+    window.open('https://www.linkedin.com/in/emil-roydev-91450b26a/', '_blank');
+  }
 }
