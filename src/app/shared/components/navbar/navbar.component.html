@@ -1,17 +1,19 @@
 <header class="border-b">
     <div class="max-container flex items-center justify-between padding-x py-5">
         <div>
-            <h1 class="text-[2rem] font-montserrat secondary-text font-semibold">PeakFinance</h1>
+            <h1 class="text-[2rem] font-montserrat secondary-text font-semibold hover:cursor-pointer scale-95 hover:scale-100 transition duration-300"
+                [routerLink]="['']"    
+            >PeakFinance</h1>
         </div>
         
         <div>
             <nav>
                 <ul class="flex gap-5">
                     <li class="flex justify-center">
-                        <a href="#" class="primary-button">Add User</a>
+                        <a [routerLink]="['/create']" class="primary-button hover:bg-accent/[0.3] transition duration-300">Add User</a>
                     </li>
                     <li class="flex justify-center">
-                        <a href="#" class="primary-button">Edit User</a>
+                        <a [routerLink]="['/edit']" class="primary-button hover:bg-accent/[0.3] transition duration-300">Edit User</a>
                     </li>
                     
                     <li>

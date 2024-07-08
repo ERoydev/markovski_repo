@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EditUserComponent } from './edit-user.component';
+import { AddUserComponent } from './add-user.component';
 import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    EditUserComponent
+    AddUserComponent
   ],
   imports: [
     CommonModule,
     SharedModule
   ],
   exports: [
-    EditUserComponent
+    AddUserComponent
   ]
 })
-export class EditUserModule { }
+export class AddUserModule { }

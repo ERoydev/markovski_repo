@@ -1,65 +1,16 @@
 
-<div>
+<main>
     <app-navbar></app-navbar>
-    <div class="h-screen mt-28">
-        <div class="max-container">
-            <section class="flex flex-col mb-20">
-                <h1 class="main-text xl:text-[3.8rem] md:text-[2.6rem] sm:text-[2rem] text-[1.6rem] text-center">
-                    Stay on Top of Your <span class="text-accent">Finances</span> with Our Advanced Dashboard.
-                </h1>
 
-                <p class="info-text text-center">Manage and update user profiles with ease. Review all users in our system and make any necessary edits to ensure accurate and up-to-date information.</p>
-            </section>
-            
-            <section>
-                <div class="flex gap-10">
-                    <div class="window px-10 py-10 relative hover:bg-slate-200 hover:cursor-pointer">
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
-                        </div>
-                        <div>
-                            <p class="font-montserrat text-[0.9rem]">Create a new user profile by entering the necessary details. 
-                                This function allows you to add new users to our system, 
-                                ensuring their information is accurately recorded for future reference and management.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="window px-10 py-10 relative hover:bg-slate-200 hover:cursor-pointer">
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
-                        </div>
-                        <div>
-                            <p class="font-montserrat text-[0.9rem]">Modify existing user profiles to keep information current and correct.
-                                This function enables you to update user details, 
-                                making sure all records reflect the most accurate and up-to-date information.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="window px-10 py-10 relative hover:bg-slate-200 hover:cursor-pointer">
-                        <div
-                            class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200">
-                        </div>
-                        <div>
-                            <p class="font-montserrat text-[0.9rem]">Remove user profiles from the system when they are no longer needed.
-                                This function allows you to permanently delete user information, 
-                                helping to maintain an organized and efficient user database.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-            </section>
+    <!-- Hero Section -->
+    <section>
+        <app-hero></app-hero>
+    </section>
 
-            <div class="text-center mt-14">
-                <app-primary-button
-                    [buttonText]="buttonText"
-                    [fontSize]="buttonFontSize"
-                ></app-primary-button>
-            </div>
-        </div>
-    </div>
+    <!-- View All Users Section -->
+    <section>
+        <app-user-list></app-user-list>
+    </section>
+
     <app-footer></app-footer>
-</div>
+</main>

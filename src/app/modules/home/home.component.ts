@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  buttonText: string = 'Get Started';
-  buttonFontSize: string = '1.3rem';
 }
