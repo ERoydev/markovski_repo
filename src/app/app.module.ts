@@ -16,7 +16,6 @@ import { EditUserModule } from './edit-user/edit-user.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule,
     AddUserModule,
     EditUserModule
   ],

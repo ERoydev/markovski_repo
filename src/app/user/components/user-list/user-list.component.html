@@ -1,9 +1,10 @@
 
 
 <div class="max-container">
-    
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800">
+    <div class="flex justify-center py-2">
+        <p class="primary-text font-montserrat font-medium">Total Users: {{this.users[0].length}}</p>
+    </div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -29,32 +30,32 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let user of this.paginatedUsers; index as i">
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                    <img class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
+                    <img class="w-10 h-10 rounded-full border border-slate-300/[.08] bg-white/[50%]" src="../../../../assets/svg/profile-img.svg" alt="Jese image">
                     <div class="ps-3">
-                        <div class="text-base font-semibold">Emil</div>
+                        <div class="text-base font-semibold">{{user.first_name}}</div>
                     </div>  
                 </th>
                 <td class="px-6 py-4">
-                    Roydev
+                    {{user.last_name}}
                 </td>
                 <td class="px-6 py-4">
                     <div class="flex items-center">
-                        <div class="">React Developer</div>
+                        <div class="">{{user.role}}</div>
                     </div>
                 </td>
 
                 <td class="px-6 py-4">
                     <div class="flex items-center">
-                        <div class="">Male</div>
+                        <div class="">{{user.gender}}</div>
                     </div>
                 </td>
 
                 <td class="px-6 py-4">
                     <div class="flex items-center">
-                        <div class="">10-07-2000</div>
+                        <div class="">{{user.birth_date}}</div>
                     </div>
                 </td>
                 <td class="px-6 py-4">
@@ -67,6 +68,13 @@
             </tr>       
         </tbody>
     </table>
+
+    <div class="flex justify-center py-2">
+        <app-pagination
+            [previousButtonHandler]="previousPage"
+            [nextButtonHandler]="nextPage"
+        ></app-pagination>
+    </div>
 </div>
 
 </div>

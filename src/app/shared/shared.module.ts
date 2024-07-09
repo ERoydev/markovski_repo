@@ -4,6 +4,7 @@ import { PrimaryButtonComponent } from './components/primary-button/primary-butt
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { PaginationComponent } from './components/pagination/pagination.component';
 // Here i export and declare are the reusable components and i IMPORT this module in main app.modules
 
 
@@ -18,7 +19,7 @@ When i want to have reusable components in all application
   declarations: [
     PrimaryButtonComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     CommonModule,
