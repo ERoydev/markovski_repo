@@ -2,9 +2,7 @@
 
 <div class="max-container">
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800">
-    <div class="flex justify-center py-2">
-        <p class="primary-text font-montserrat font-medium">Total Users: {{this.users[0].length}}</p>
-    </div>
+   
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -22,7 +20,7 @@
                 </th>
 
                 <th scope="col" class="px-6 py-3">
-                    Birth Date
+                    Age/Birth_Date
                 </th>
 
                 <th scope="col" class="px-6 py-3">
@@ -55,7 +53,7 @@
 
                 <td class="px-6 py-4">
                     <div class="flex items-center">
-                        <div class="">{{user.birth_date}}</div>
+                        <div class="">{{calculateAge(user.birth_date)}} years old - {{user.birth_date}}</div>
                     </div>
                 </td>
                 <td class="px-6 py-4">

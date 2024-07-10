@@ -31,11 +31,11 @@ export class UserListComponent {
   paginateUsers() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.paginatedUsers = this.users[0].slice(startIndex, endIndex)
+    this.paginatedUsers = this.users.slice(startIndex, endIndex)
   }
 
   nextPage = () => {
-    if (this.currentPage * this.pageSize < this.users[0].length) {
+    if (this.currentPage * this.pageSize < this.users.length) {
       this.currentPage += 1;
       this.paginateUsers();
     }
@@ -46,6 +46,14 @@ export class UserListComponent {
       this.currentPage-= 1;
       this.paginateUsers();
     }
+  }
+
+  calculateAge(birthDate: string): number {
+    const birth = new Date(birthDate);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+
+    return age;
   }
 
 }
