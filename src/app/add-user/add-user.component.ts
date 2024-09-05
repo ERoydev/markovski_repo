@@ -27,7 +27,6 @@ export class AddUserComponent {
   onSubmit() {
     if (this.userForm.valid) {
       const data = this.userForm.value
-      console.log('Form Submitted', data);
 
       this.UserService.createUser(data).subscribe((response) => {
         console.log('POST Request is successfull', response);

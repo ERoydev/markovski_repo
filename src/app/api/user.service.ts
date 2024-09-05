@@ -25,5 +25,10 @@ export class UserService {
 
     const response = this.http.post<User>(this.baseUrl, data_prepare)
     return response;
+  };
+
+  deleteUser(userId: number) {
+    const response = this.http.delete<User>(`${this.baseUrl}/${userId}/`)
+    return response;
   }
 }
