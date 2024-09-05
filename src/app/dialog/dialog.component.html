@@ -1,11 +1,13 @@
-<h2 mat-dialog-title>Example Dialog</h2>
-<mat-dialog-content>
-    <p>Example dialog content</p>
-</mat-dialog-content>
-
-
-<mat-dialog-actions>
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkfFocusInitial>Ok</button>
-
-</mat-dialog-actions>
+<div class="dialog-overlay" (click)="closeDialog()"></div>
+<div class="dialog-container">
+  <div class="dialog-header flex text-center">
+    <h2>Are you sure you want to procceed with this action?</h2>
+  </div>
+  <div class="dialog-content">
+    <ng-content></ng-content>
+  </div>
+  <div class="dialog-actions flex gap-8 justify-center pt-8">
+    <button (click)="closeDialog()" class="border py-2 px-2 rounded-lg bg-red-600">Close</button>
+    <button class="border py-2 px-2 rounded-lg bg-blue-600">Submit</button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/api/user.service';
 import { User } from 'src/app/types/user';
 
@@ -9,6 +9,7 @@ import { User } from 'src/app/types/user';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  isDialogOpen = false;
 
   paginatedUsers: any[] = [];
   currentPage: number = 1;
@@ -17,6 +18,14 @@ export class UserListComponent implements OnInit {
   constructor(
     private UserService: UserService
   ) {}
+
+  openDialog() {
+    this.isDialogOpen = true;
+  }
+
+  closeDialog() {
+    this.isDialogOpen = false;
+  }
 
   ngOnInit(): void {
     // Here i load all the users using Observable syntax instead of Promises
@@ -29,14 +38,15 @@ export class UserListComponent implements OnInit {
 
   deleteUserHandler(event: Event, user: User) {
     event.preventDefault()
-    console.log(user.id)
+    this.openDialog();
+    // console.log(user.id)
 
-    this.UserService.deleteUser(user.id).subscribe((response) => {
+    // this.UserService.deleteUser(user.id).subscribe((response) => {
       
-      // I need to update the local state to display the latests changes
-      this.users = this.users.filter((u) => u.id !== user.id)
-      this.paginateUsers()
-    })
+    //   // I need to update the local state to display the latests changes
+    //   this.users = this.users.filter((u) => u.id !== user.id)
+    //   this.paginateUsers()
+    // })
   }
 
   paginateUsers() {

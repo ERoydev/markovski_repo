@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { PaginationModule } from '../shared/components/pagination/pagination.module';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { PaginationModule } from '../shared/components/pagination/pagination.mod
   imports: [
     CommonModule,
     PaginationModule,
+    DialogComponent,
   ],
   exports: [
     UserListComponent,
