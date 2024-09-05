@@ -1,14 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { nameValidator, futureDateValidator } from '../utils/custom-validators';
 import { UserService } from '../api/user.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent {
+
+  constructor(
+    private UserService: UserService,
+    private router: Router,
+  ) {}
+
   userForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, nameValidator()]),
     lastName: new FormControl('', [Validators.required, nameValidator()]),
@@ -17,14 +23,17 @@ export class AddUserComponent {
     birthDate: new FormControl('', [Validators.required, futureDateValidator()])
   })
 
-  constructor(private UserService: UserService) {}
 
   onSubmit() {
     if (this.userForm.valid) {
       const data = this.userForm.value
-      console.log('Form Submitted', this.userForm.value);
-      this.UserService.create(data);
-    
+      console.log('Form Submitted', data);
+
+      this.UserService.createUser(data).subscribe((response) => {
+        console.log('POST Request is successfull', response);
+        this.router.navigate(['']);
+      })
+
     } else {
       console.log('Form is invalid');
       this.userForm.markAllAsTouched(); // This will trigger validation messages
@@ -48,4 +57,5 @@ export class AddUserComponent {
     this.selectedText = option.label;
     this.toggleDropdown()
   }
+
 }

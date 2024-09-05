@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './modules/home/home.module';
 import { AddUserModule } from './add-user/add-user.module';
 import { EditUserModule } from './edit-user/edit-user.module';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +17,8 @@ import { EditUserModule } from './edit-user/edit-user.module';
     AppRoutingModule,
     SharedModule,
     AddUserModule,
-    EditUserModule
+    EditUserModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

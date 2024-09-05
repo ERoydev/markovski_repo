@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/api/user.service';
+import { User } from 'src/app/types/user';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
-export class UserListComponent {
-  users: any[] = [];
+export class UserListComponent implements OnInit {
+  users: User[] = [];
 
   paginatedUsers: any[] = [];
   currentPage: number = 1;
@@ -16,22 +17,17 @@ export class UserListComponent {
   constructor(private UserService: UserService) {}
 
   ngOnInit(): void {
-    this.loadUsers();
-  }
-
-  async loadUsers() {
-    try {
-      this.users = await this.UserService.getAllUsers();
+    // Here i load all the users using Observable syntax instead of Promises
+    this.UserService.getAllUsers().subscribe((allUsers: User[]) => {
+      this.users = allUsers;
       this.paginateUsers();
-    } catch(error) {
-      console.error('Error loading users:', error);
-    }
+    })
   }
 
   paginateUsers() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    this.paginatedUsers = this.users.slice(startIndex, endIndex)
+    this.paginatedUsers = this.users.slice(startIndex, endIndex);
   }
 
   nextPage = () => {

@@ -4,6 +4,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { PaginationModule } from '../shared/components/pagination/pagination.module';
 
+
 @NgModule({
   declarations: [
     UserListComponent,
@@ -11,7 +12,7 @@ import { PaginationModule } from '../shared/components/pagination/pagination.mod
   ],
   imports: [
     CommonModule,
-    PaginationModule
+    PaginationModule,
   ],
   exports: [
     UserListComponent,
