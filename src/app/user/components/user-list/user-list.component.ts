@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/api/user.service';
 import { User } from 'src/app/types/user';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -19,6 +18,24 @@ export class UserListComponent implements OnInit {
   constructor(
     private UserService: UserService
   ) {}
+
+  // Main functionalities
+  ngOnInit(): void {
+    // Here i load all the users using Observable syntax instead of Promises
+    this.UserService.getAllUsers().subscribe((allUsers: User[]) => {
+      this.users = allUsers;
+      this.paginateUsers();
+    })
+  }
+  
+  deleteUserHandler(user: User) {
+    this.UserService.deleteUser(user.id).subscribe((response) => {
+      
+      // I need to update the local state to display the latests changes
+      this.users = this.users.filter((u) => u.id !== user.id)
+      this.paginateUsers()
+    })
+  }
 
   openDialog(event: Event, user: User) {
     event.preventDefault();
@@ -38,23 +55,7 @@ export class UserListComponent implements OnInit {
   }
   // END Dialog functions
 
-  ngOnInit(): void {
-    // Here i load all the users using Observable syntax instead of Promises
-    this.UserService.getAllUsers().subscribe((allUsers: User[]) => {
-      this.users = allUsers;
-      this.paginateUsers();
-    })
-  }
-
-  deleteUserHandler(user: User) {
-    this.UserService.deleteUser(user.id).subscribe((response) => {
-      
-      // I need to update the local state to display the latests changes
-      this.users = this.users.filter((u) => u.id !== user.id)
-      this.paginateUsers()
-    })
-  }
-
+  // Pagination
   paginateUsers() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
@@ -82,5 +83,4 @@ export class UserListComponent implements OnInit {
 
     return age;
   }
-
 }

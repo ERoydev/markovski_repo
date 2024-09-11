@@ -4,6 +4,7 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { PaginationModule } from '../shared/components/pagination/pagination.module';
 import { DialogComponent } from '../dialog/dialog.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { DialogComponent } from '../dialog/dialog.component';
     CommonModule,
     PaginationModule,
     DialogComponent,
+    RouterModule,
   ],
   exports: [
     UserListComponent,
