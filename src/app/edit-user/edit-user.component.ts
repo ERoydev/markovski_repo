@@ -22,7 +22,6 @@ export class EditUserComponent implements OnInit {
       
       this.userService.getUser(id).subscribe(user => {
         this.userData = user;
-        console.log(this.userData)
       })
 
     })
