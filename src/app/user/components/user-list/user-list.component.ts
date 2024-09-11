@@ -10,6 +10,7 @@ import { User } from 'src/app/types/user';
 export class UserListComponent implements OnInit {
   users: User[] = [];
   isDialogOpen = false;
+  currUser = {} as User;
 
   paginatedUsers: any[] = [];
   currentPage: number = 1;
@@ -19,13 +20,23 @@ export class UserListComponent implements OnInit {
     private UserService: UserService
   ) {}
 
-  openDialog() {
+  openDialog(event: Event, user: User) {
+    event.preventDefault();
     this.isDialogOpen = true;
+    this.currUser = user;
   }
 
+  // Here i create two functions which i pass inside user-list.component.html as an Event
+  // The parent component can subscribe to these events using event binding like (close)="closeDialog()", (submit)="submitDialog()"
   closeDialog() {
     this.isDialogOpen = false;
   }
+
+  submitDialog() {
+    this.deleteUserHandler(this.currUser);
+    this.closeDialog();
+  }
+  // END Dialog functions
 
   ngOnInit(): void {
     // Here i load all the users using Observable syntax instead of Promises
@@ -35,18 +46,13 @@ export class UserListComponent implements OnInit {
     })
   }
 
-
-  deleteUserHandler(event: Event, user: User) {
-    event.preventDefault()
-    this.openDialog();
-    // console.log(user.id)
-
-    // this.UserService.deleteUser(user.id).subscribe((response) => {
+  deleteUserHandler(user: User) {
+    this.UserService.deleteUser(user.id).subscribe((response) => {
       
-    //   // I need to update the local state to display the latests changes
-    //   this.users = this.users.filter((u) => u.id !== user.id)
-    //   this.paginateUsers()
-    // })
+      // I need to update the local state to display the latests changes
+      this.users = this.users.filter((u) => u.id !== user.id)
+      this.paginateUsers()
+    })
   }
 
   paginateUsers() {

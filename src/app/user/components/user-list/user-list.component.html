@@ -1,7 +1,8 @@
 
 
 <div class="max-container">
-    <app-dialog *ngIf="isDialogOpen" (close)="closeDialog()"/>
+
+    <app-dialog *ngIf="isDialogOpen" (close)="closeDialog()" (submit)="submitDialog()" />
     
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-slate-800">
         
@@ -63,7 +64,7 @@
                         <!-- Modal toggle -->
                         <div class="flex gap-5">
                             <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-bold text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" (click)="deleteUserHandler($event, user)" type="button" data-modal-target="deleteUserModal" data-modal-show="deleteUserModal" class="font-bold text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                            <a href="#" (click)="openDialog($event, user)" type="button" data-modal-target="deleteUserModal" data-modal-show="deleteUserModal" class="font-bold text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                         </div>
                     </td>
                 </tr>       
