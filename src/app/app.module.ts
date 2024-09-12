@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './modules/home/home.module';
-import { AddUserModule } from './add-user/add-user.module';
 import { EditUserModule } from './edit-user/edit-user.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    AddUserModule,
+    CoreModule,
     EditUserModule,
     HttpClientModule,
   ],
