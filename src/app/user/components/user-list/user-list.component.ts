@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
 import { UserFormGuard } from 'src/app/core/user-form/user-form.guard';
+import { DialogService } from 'src/app/dialog/dialog.service';
 import { User } from 'src/app/types/user';
 import calculateAge from 'src/app/utils/calculateAge';
 @Component({
@@ -23,6 +24,7 @@ export class UserListComponent implements OnInit {
     private UserService: UserService,
     private UserFormGuard: UserFormGuard,
     private router: Router,
+    private dialogService: DialogService,
   ) {}
 
   closeErrorBanner() {
@@ -72,13 +74,19 @@ export class UserListComponent implements OnInit {
 
   // Here i create two functions which i pass inside user-list.component.html as an Event
   // The parent component can subscribe to these events using event binding like (close)="closeDialog()", (submit)="submitDialog()"
+  getDialog() {
+    this.isDialogOpen = this.dialogService.isDialogOpen();
+  }
+  
   closeDialog() {
-    this.isDialogOpen = false;
+    this.dialogService.closeDialog()
+    this.getDialog();
   }
 
   submitDialog() {
     this.deleteUserHandler(this.currUser);
-    this.closeDialog();
+    this.dialogService.submitDialog()
+    this.getDialog();
   }
   // END Dialog functions
 
