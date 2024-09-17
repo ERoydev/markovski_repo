@@ -13,7 +13,6 @@ It's simple CRUD Application (Create, Read, Update, Delete).
 - Modern UI built with Angular and styled using Tailwind CSS.
 - Integration with MockAPI for data management.
 - Responsive design for various screen sizes.
-- [Add more features specific to your application].
 
 ## Tech Stack
 - **Angular**: Framework for building the front-end of the application.
