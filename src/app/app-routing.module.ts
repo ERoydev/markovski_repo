@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 import { UserFormComponent } from './core/user-form/user-form.component';
 

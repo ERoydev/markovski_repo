@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../types/user';
+import { formatToDayMonthYear } from '../utils/convertStringToDate';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class UserService {
       last_name: data.lastName,
       role: data.role,
       gender: data.gender,
-      birth_date: data.birthDate
+      birth_date: formatToDayMonthYear(data.birthDate)
     } as User;
 
     const response = this.http.post<User>(this.baseUrl, data_prepare)

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/api/user.service';
+import { DialogService } from 'src/app/dialog/dialog.service';
 import { User } from 'src/app/types/user';
 import calculateAge from 'src/app/utils/calculateAge';
 @Component({
@@ -17,7 +18,8 @@ export class UserListComponent implements OnInit {
   pageSize: number = 10;
 
   constructor(
-    private UserService: UserService
+    private UserService: UserService,
+    private dialogService: DialogService,
   ) {}
 
   // Main functionalities

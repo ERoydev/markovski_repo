@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { PaginationModule } from '../shared/components/pagination/pagination.module';
-import { DialogComponent } from '../dialog/dialog.component';
 import { RouterModule } from '@angular/router';
+import { DialogModule } from '../dialog/dialog.module';
 
 
 @NgModule({
@@ -13,8 +13,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     PaginationModule,
-    DialogComponent,
     RouterModule,
+    DialogModule
   ],
   exports: [
     UserListComponent,

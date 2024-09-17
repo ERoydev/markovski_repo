@@ -11,7 +11,7 @@ export function convertToDateFormat(dateStr: string): string {
     return formattedDate;
 }
 
-export function reverseConvertion(dateStr: string): string {
+export function formatToDayMonthYear(dateStr: string): string {
     // Create a Date object from the input string
     const date = new Date(dateStr);
 

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
+import { DialogService } from 'src/app/dialog/dialog.service';
 import { User } from 'src/app/types/user';
-import { convertToDateFormat, reverseConvertion } from 'src/app/utils/convertStringToDate';
+import { convertToDateFormat, formatToDayMonthYear } from 'src/app/utils/convertStringToDate';
 import { futureDateValidator, nameValidator } from 'src/app/utils/custom-validators';
 
 // For the simplicity for this application i have opportunity to reuse my userForm component for edit and create.
@@ -17,12 +18,14 @@ export class UserFormComponent implements OnInit {
   private isEditMode: boolean = false;
   private userData: User | null = null;
   userForm: FormGroup;
+  isDialogOpen: boolean = false;
 
   constructor(
     private UserService: UserService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
+    private dialogService: DialogService,
   ) {
     this.userForm = this.fb.group({
       // i initialize my Form here with its validators
@@ -63,10 +66,35 @@ export class UserFormComponent implements OnInit {
     })
   }
 
+  // DIALOG
+  getDialog() {
+    this.isDialogOpen = this.dialogService.isDialogOpen();
+  }
+
+  openDialog(event: Event): void {
+    // I open the function and the i want to get the boolen value if dialog is open or not using getDialog()
+    this.dialogService.openDialog(event);
+    this.getDialog();
+  }
+
+  closeDialog(): void {
+    this.dialogService.closeDialog();
+    this.getDialog();
+  }
+
+  submitDialog(): void {
+    this.onSubmit();
+    this.dialogService.submitDialog();
+    this.getDialog();
+  }
+  // END OF DIALOG
+
+  // This will be invoked when the dialog i submitted
   onSubmit() {
     if (this.userForm.valid) {
       const data = this.userForm.value
       
+      // I check if form is in edit mode or create
       if (!this.isEditMode) {
         this.UserService.createUser(data).subscribe((response) => {
           console.log('POST Request is successfull', response);
@@ -78,7 +106,7 @@ export class UserFormComponent implements OnInit {
           id: Number(this.userData?.id),
           first_name: data.firstName,
           last_name: data.lastName,
-          birth_date: reverseConvertion(data.birthDate),
+          birth_date: formatToDayMonthYear(data.birthDate),
           gender: data.gender,
           role: data.role
         }
@@ -95,7 +123,6 @@ export class UserFormComponent implements OnInit {
       this.userForm.markAllAsTouched(); // This will trigger validation messages
     }
   }
-
 
   // Code for Dropdown menu
   options = [
