@@ -52,4 +52,9 @@ To start the Angular application, run:
 ```bash
 ng serve
 ```
+### Home page
+<br />
+<br />
 
+
+![MarkovskiPicture](https://github.com/user-attachments/assets/553ee9a0-355d-4adb-999e-a01ffa7d1571)
