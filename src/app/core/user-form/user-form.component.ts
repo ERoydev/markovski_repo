@@ -6,7 +6,6 @@ import { DialogService } from 'src/app/dialog/dialog.service';
 import { User } from 'src/app/types/user';
 import { formatToYearMonthDay, formatToDayMonthYear } from 'src/app/utils/convertStringToDate';
 import { futureDateValidator, nameValidator } from 'src/app/utils/custom-validators';
-import { UserFormGuard } from './user-form.guard';
 
 // For the simplicity for this application i have opportunity to reuse my userForm component for edit and create.
 
@@ -16,7 +15,7 @@ import { UserFormGuard } from './user-form.guard';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-  private isEditMode: boolean = false;
+  isEditMode: boolean = false;
   private userData: User | null = null;
   userForm: FormGroup;
   isDialogOpen: boolean = false;
