@@ -19,6 +19,7 @@ export class UserFormComponent implements OnInit {
   private userData: User | null = null;
   userForm: FormGroup;
   isDialogOpen: boolean = false;
+  errorMessage: string | null = null;
 
 
   constructor(
@@ -37,7 +38,6 @@ export class UserFormComponent implements OnInit {
       birthDate: ['', [Validators.required, futureDateValidator()]]
     });
   }
-
 
   ngOnInit(): void {
     // On init i get the specified user with his id
@@ -99,17 +99,31 @@ export class UserFormComponent implements OnInit {
       // I check if form is in edit mode or create
       if (!this.isEditMode) {
         // CREATE
-        this.UserService.createUser(data).subscribe((response) => {
-          console.log('POST Request is successfull', response);
-          this.router.navigate(['']);
+        this.UserService.createUser(data).subscribe({
+          next: (response) => {
+            console.log('POST Request is successful', response);
+            this.errorMessage = null; // Clear error message on success
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            console.error('Error occurred during POST request', error);
+            this.errorMessage = 'Failed to create user. Please try again.'; // Set error message
+          }
         })
       } else {
         // EDIT
         const userId = Number(this.userData?.id);
 
-        this.UserService.editUser(userId, data).subscribe(response => {
-          console.log('PUT Request is successfull', response);
-          this.router.navigate(['']);
+        this.UserService.editUser(userId, data).subscribe({
+          next: (response) => {
+            console.log('PUT Request is successful', response);
+            this.errorMessage = null; // Clear error message on success
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            console.error('Error occurred during PUT request', error);
+            this.errorMessage = 'Failed to update user. Please try again.'; // Set error message
+          }
         })
       
       }
@@ -145,4 +159,8 @@ export class UserFormComponent implements OnInit {
     this.toggleDropdown()
   }
   // End of Dropdown
+
+  closeErrorBanner() {
+    this.errorMessage = '';
+  }
 }

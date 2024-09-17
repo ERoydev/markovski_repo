@@ -34,7 +34,8 @@ When i want to have reusable components in all application
   exports: [
     PrimaryButtonComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    BannerComponent,
   ]
 })
 export class SharedModule { }
