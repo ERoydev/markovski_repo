@@ -1,4 +1,4 @@
-<header class="border-b">
+<header class="border-b relative">
     <div class="max-container flex items-center justify-between padding-x py-5">
         <div>
             <h1 class="text-[2rem] font-montserrat secondary-text font-semibold hover:cursor-pointer scale-95 hover:scale-100 transition duration-300"
@@ -7,10 +7,13 @@
         </div>
         
         <div>
+            <div (click)="openNav()" class="w-[30px] h-[30px] hover:cursor-pointer hover:fill-blue-600  transition lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
+            </div>
             <nav>
-                <ul class="gap-5 flex max-lg:hidden">
+                <ul [ngClass]="{'gap-5': true, 'flex': true, 'max-lg:hidden': showNav, 'max-lg:flex-col': true, 'max-lg:absolute': true, 'right-20': true, 'max-lg:bg-slate-200': true, 'max-lg:rounded-xl': true, 'px-2': true, 'py-2': true}">
                     <li class="flex justify-center">
-                        <a (click)="navTo('/create')" class="primary-button hover:bg-accent/[0.3] transition duration-300">Add User</a>
+                        <a (click)="navTo('/create')" class="primary-button hover:bg-accent/[0.3] rounded-xl transition duration-300 max-lg:w-full max-lg:align-center">Add User</a>
                     </li>
                     
                     <li>

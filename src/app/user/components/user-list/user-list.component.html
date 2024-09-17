@@ -11,24 +11,24 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         First Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         Last Name
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         Role
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         Gender
                     </th>
 
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         Age/Birth_Date
                     </th>
 
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-6 py-3 max-md:text-[0.5rem]">
                         Actions
                     </th>
                 </tr>
@@ -38,27 +38,27 @@
                     <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                         <img class="w-10 h-10 rounded-full border border-slate-300/[.08] bg-white/[50%]" src="../../../../assets/svg/profile-img.svg" alt="Jese image">
                         <div class="ps-3">
-                            <div class="text-base font-semibold max-md:text-sm">{{user.first_name}}</div>
+                            <div class="text-base font-semibold max-md:text-[0.6rem]">{{user.first_name}}</div>
                         </div>  
                     </th>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 max-md:text-[0.6rem]">
                         {{user.last_name}}
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex items-center">
-                            <div class="max-md:text-sm">{{user.role}}</div>
+                            <div class="max-md:text-[0.6rem]">{{user.role}}</div>
                         </div>
                     </td>
 
                     <td class="px-6 py-4">
                         <div class="flex items-center">
-                            <div class="max-md:text-sm">{{user.gender}}</div>
+                            <div class="max-md:text-[0.6rem]">{{user.gender}}</div>
                         </div>
                     </td>
 
                     <td class="px-6 py-4">
                         <div class="flex items-center">
-                            <div class="max-md:text-sm">{{ getAge(user.birth_date) }} years old - {{ user.birth_date }}</div>
+                            <div class="max-md:text-[0.6rem]">{{ getAge(user.birth_date) }} years old - {{ user.birth_date }}</div>
                         </div>
                     </td>
                     <td class="px-6 py-4">
