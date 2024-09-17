@@ -6,6 +6,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { NotAllowedComponent } from './components/not-allowed/not-allowed.component';
+import { BannerComponent } from './components/banner/banner.component';
 // Here i export and declare are the reusable components and i IMPORT this module in main app.modules
 
 
@@ -22,6 +24,8 @@ When i want to have reusable components in all application
     NavbarComponent,
     FooterComponent,
     ErrorPageComponent,
+    NotAllowedComponent,
+    BannerComponent,
   ],
   imports: [
     CommonModule,

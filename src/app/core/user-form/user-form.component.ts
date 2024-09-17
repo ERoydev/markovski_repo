@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { User } from 'src/app/types/user';
-import { convertToDateFormat, formatToDayMonthYear } from 'src/app/utils/convertStringToDate';
+import { formatToYearMonthDay, formatToDayMonthYear } from 'src/app/utils/convertStringToDate';
 import { futureDateValidator, nameValidator } from 'src/app/utils/custom-validators';
+import { UserFormGuard } from './user-form.guard';
 
 // For the simplicity for this application i have opportunity to reuse my userForm component for edit and create.
 
@@ -19,6 +20,7 @@ export class UserFormComponent implements OnInit {
   private userData: User | null = null;
   userForm: FormGroup;
   isDialogOpen: boolean = false;
+
 
   constructor(
     private UserService: UserService,
@@ -37,6 +39,7 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
     // On init i get the specified user with his id
     this.activatedRoute.params.subscribe(v => {
@@ -47,7 +50,7 @@ export class UserFormComponent implements OnInit {
           this.userData = user;
 
           if (this.userData) {
-            const birth_date = convertToDateFormat(this.userData.birth_date)
+            const birth_date = formatToYearMonthDay(this.userData.birth_date)
             this.selectedText = this.userData.gender
 
             // I update my userform with the values so i can show them in input fields.

@@ -1,5 +1,7 @@
-export function convertToDateFormat(dateStr: string): string {
-    // Split the input string by '/'
+// Two functions to handle data formating issues
+
+
+export function formatToYearMonthDay(dateStr: string): string {
     const [day, month, year] = dateStr.split("/");
 
     // Create a new Date object
@@ -12,7 +14,6 @@ export function convertToDateFormat(dateStr: string): string {
 }
 
 export function formatToDayMonthYear(dateStr: string): string {
-    // Create a Date object from the input string
     const date = new Date(dateStr);
 
     // Extract the day, month, and year

@@ -43,7 +43,7 @@ export class UserService {
     return response;
   }
 
-  // Util function that will help me prepare my data for create and edit
+  // Util function to prepare data for create and edit
   dataPreparation(data: any) {
     const data_prepare = {
       first_name: data.firstName,

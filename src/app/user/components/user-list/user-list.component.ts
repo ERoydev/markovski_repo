@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
-import { DialogService } from 'src/app/dialog/dialog.service';
+import { UserFormGuard } from 'src/app/core/user-form/user-form.guard';
 import { User } from 'src/app/types/user';
 import calculateAge from 'src/app/utils/calculateAge';
 @Component({
@@ -19,8 +20,15 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private UserService: UserService,
-    private dialogService: DialogService,
+    private UserFormGuard: UserFormGuard,
+    private router: Router,
   ) {}
+
+  navTo(path: string, userId: string) {
+    // I allow in my GUARD to access this with click 
+    this.UserFormGuard.allowProgrammaticNavigation();
+    this.router.navigate([`${path}/${userId}`])
+  }
 
   // Main functionalities
   ngOnInit(): void {
