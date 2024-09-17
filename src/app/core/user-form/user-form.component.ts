@@ -96,22 +96,16 @@ export class UserFormComponent implements OnInit {
       
       // I check if form is in edit mode or create
       if (!this.isEditMode) {
+        // CREATE
         this.UserService.createUser(data).subscribe((response) => {
           console.log('POST Request is successfull', response);
           this.router.navigate(['']);
         })
       } else {
-        // I prepare my data because i use Snake case in backend and Cammel case in frontend
-        const data_prepare = {
-          id: Number(this.userData?.id),
-          first_name: data.firstName,
-          last_name: data.lastName,
-          birth_date: formatToDayMonthYear(data.birthDate),
-          gender: data.gender,
-          role: data.role
-        }
-        
-        this.UserService.editUser(data_prepare.id, data_prepare).subscribe(response => {
+        // EDIT
+        const userId = Number(this.userData?.id);
+
+        this.UserService.editUser(userId, data).subscribe(response => {
           console.log('PUT Request is successfull', response);
           this.router.navigate(['']);
         })
