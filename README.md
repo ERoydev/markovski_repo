@@ -1,5 +1,7 @@
 # Markovski Repo
 
+This is an Angular project using Angular version "16.1.6" . It includes Angular Material and TailwindCSS for styling.
+
 Welcome to the Markovski repository! This project is an Angular application styled with Tailwind CSS and uses MockAPI for backend API services.
 It's simple CRUD Application (Create, Read, Update, Delete).
 
@@ -22,11 +24,11 @@ It's simple CRUD Application (Create, Read, Update, Delete).
 ## Installation
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (version >= 12)
+- [Node.js](https://nodejs.org/) (v16.x.x or later is recommended)
 - npm (usually comes with Node.js)
-- Angular CLI
+- Angular CLI 16.
     ```bash
-    npm install -g @angular/cli
+    npm install -g @angular/cli@16.1.6
     ```
 
 ### Steps
@@ -49,3 +51,5 @@ It's simple CRUD Application (Create, Read, Update, Delete).
 To start the Angular application, run:
 ```bash
 ng serve
+```
+
