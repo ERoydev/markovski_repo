@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/api/user.service';
 import { User } from 'src/app/types/user';
+import calculateAge from 'src/app/utils/calculateAge';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -75,12 +76,9 @@ export class UserListComponent implements OnInit {
       this.paginateUsers();
     }
   }
+  // End of Pagination
 
-  calculateAge(birthDate: string): number {
-    const birth = new Date(birthDate);
-    const today = new Date();
-    let age = today.getFullYear() - birth.getFullYear();
-
-    return age;
+  getAge(birthDate: string): number | null {
+    return calculateAge(birthDate);
   }
 }

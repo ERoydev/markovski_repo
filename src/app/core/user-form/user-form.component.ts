@@ -6,6 +6,8 @@ import { User } from 'src/app/types/user';
 import { convertToDateFormat, reverseConvertion } from 'src/app/utils/convertStringToDate';
 import { futureDateValidator, nameValidator } from 'src/app/utils/custom-validators';
 
+// For the simplicity for this application i have opportunity to reuse my userForm component for edit and create.
+
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html',
@@ -23,6 +25,7 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
   ) {
     this.userForm = this.fb.group({
+      // i initialize my Form here with its validators
       firstName: ['', [Validators.required, nameValidator()]],
       lastName: ['', [Validators.required, nameValidator()]],
       role: ['', [Validators.required]],
@@ -32,6 +35,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // On init i get the specified user with his id
     this.activatedRoute.params.subscribe(v => {
       if (v['id']) {
         this.isEditMode = true;
@@ -42,12 +46,14 @@ export class UserFormComponent implements OnInit {
           if (this.userData) {
             const birth_date = convertToDateFormat(this.userData.birth_date)
             this.selectedText = this.userData.gender
+
+            // I update my userform with the values so i can show them in input fields.
             this.userForm.patchValue({
               firstName: this.userData.first_name,
               lastName: this.userData.last_name,
               role: this.userData.role,
               gender: this.userData.gender,
-              birthDate: birth_date
+              birthDate: birth_date  
             });
           }
         })
@@ -67,6 +73,7 @@ export class UserFormComponent implements OnInit {
           this.router.navigate(['']);
         })
       } else {
+        // I prepare my data because i use Snake case in backend and Cammel case in frontend
         const data_prepare = {
           id: Number(this.userData?.id),
           first_name: data.firstName,
