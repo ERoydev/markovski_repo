@@ -13,6 +13,7 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
   isDialogOpen = false;
   currUser = {} as User;
+  errorMessage: string = '';
 
   paginatedUsers: any[] = [];
   currentPage: number = 1;
@@ -24,6 +25,10 @@ export class UserListComponent implements OnInit {
     private router: Router,
   ) {}
 
+  closeErrorBanner() {
+    this.errorMessage = '';
+  }
+
   navTo(path: string, userId: string) {
     // I allow in my GUARD to access this with click 
     this.UserFormGuard.allowProgrammaticNavigation();
@@ -33,18 +38,29 @@ export class UserListComponent implements OnInit {
   // Main functionalities
   ngOnInit(): void {
     // Here i load all the users using Observable syntax instead of Promises
-    this.UserService.getAllUsers().subscribe((allUsers: User[]) => {
-      this.users = allUsers;
-      this.paginateUsers();
+    this.UserService.getAllUsers().subscribe({
+      next: (allUsers: User[]) => {
+        this.users = allUsers;
+        this.paginateUsers();
+      },
+      error: (error) => {
+        this.errorMessage = 'Something went wrong we cannot load all the users. Please try again later!'
+      }
     })
   }
   
   deleteUserHandler(user: User) {
-    this.UserService.deleteUser(user.id).subscribe((response) => {
+    this.UserService.deleteUser(user.id).subscribe({
+      next: (response) => {
+        // I need to update the local state to display the latests changes
+        this.users = this.users.filter((u) => u.id !== user.id)
+        this.paginateUsers()
+
+      },
+      error: (error) => {
+        this.errorMessage = 'Error occured you cannot delete this user from the server. Please try again later!'
+      }
       
-      // I need to update the local state to display the latests changes
-      this.users = this.users.filter((u) => u.id !== user.id)
-      this.paginateUsers()
     })
   }
 

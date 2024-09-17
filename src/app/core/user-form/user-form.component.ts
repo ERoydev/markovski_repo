@@ -45,21 +45,26 @@ export class UserFormComponent implements OnInit {
       if (v['id']) {
         this.isEditMode = true;
         
-        this.UserService.getUser(v['id']).subscribe(user => {
-          this.userData = user;
-
-          if (this.userData) {
-            const birth_date = formatToYearMonthDay(this.userData.birth_date)
-            this.selectedText = this.userData.gender
-
-            // I update my userform with the values so i can show them in input fields.
-            this.userForm.patchValue({
-              firstName: this.userData.first_name,
-              lastName: this.userData.last_name,
-              role: this.userData.role,
-              gender: this.userData.gender,
-              birthDate: birth_date  
-            });
+        this.UserService.getUser(v['id']).subscribe({
+          next: (response) => {
+            this.userData = response;
+  
+            if (this.userData) {
+              const birth_date = formatToYearMonthDay(this.userData.birth_date)
+              this.selectedText = this.userData.gender
+  
+              // I update my userform with the values so i can show them in input fields.
+              this.userForm.patchValue({
+                firstName: this.userData.first_name,
+                lastName: this.userData.last_name,
+                role: this.userData.role,
+                gender: this.userData.gender,
+                birthDate: birth_date  
+              });
+            }
+          },
+          error: (error) => {
+            this.errorMessage = 'Failed to retrieve user by id. Please go back and try again!'
           }
         })
       } else {

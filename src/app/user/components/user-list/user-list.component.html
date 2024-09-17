@@ -1,5 +1,6 @@
 
 
+<app-banner *ngIf="errorMessage" [errorMessage]="errorMessage" (close)="closeErrorBanner()"></app-banner>
 <div class="max-container mb-44">
 
     <app-dialog *ngIf="isDialogOpen" (close)="closeDialog()" (submit)="submitDialog()" />
